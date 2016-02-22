@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">Glasgow</string>
+    <string name="eye">Открывание глаз</string>
+    <array name="title">
+        <item>Открывание глаз</item>
+        <item>Речевая реакция</item>
+        <item>Двигательная реакция</item>
+    </array>
 </resources>

@@ -19,6 +19,12 @@ public class MyAdapter extends FragmentPagerAdapter {
 
     @Override
     public int getCount() {
-        return 0;
+        return 4;
+    }
+
+    @Override
+    public CharSequence getPageTitle(int position) {
+        return super.getPageTitle(position);
+
     }
 }
