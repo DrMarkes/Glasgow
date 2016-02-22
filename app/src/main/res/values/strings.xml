@@ -1,9 +1,25 @@
 <resources>
     <string name="app_name">Glasgow</string>
     <string name="eye">Открывание глаз</string>
-    <array name="title">
-        <item>Открывание глаз</item>
-        <item>Речевая реакция</item>
-        <item>Двигательная реакция</item>
-    </array>
+    <string name="verbal">Речевая реакция</string>
+    <string name="motor">Двигательная реакция</string>
+
+    <string name="eye1">Отсутствует — 1 балл</string>
+    <string name="eye2">Как реакция на болевое раздражение — 2 балла</string>
+    <string name="eye3">Как реакция на вербальный стимул — 3 балла</string>
+    <string name="eye4">Произвольное — 4 балла</string>
+
+    <string name="verbal1">Отсутствие речи — 1 балл</string>
+    <string name="verbal2">Нечленораздельные звуки в ответ на заданный вопрос — 2 балла</string>
+    <string name="verbal3">Словесная окрошка, ответ по смыслу не соответствует вопросу — 3 балла</string>
+    <string name="verbal4">Больной дезориентирован, спутанная речь — 4 балла</string>
+    <string name="verbal5">Больной ориентирован, быстрый и правильный ответ на заданный вопрос — 5 баллов</string>
+
+    <string name="motor1">Отсутствие движений — 1 балл</string>
+    <string name="motor2">Патологическое разгибание в ответ на болевое раздражение — 2 балла</string>
+    <string name="motor3">Патологическое сгибание в ответ на болевое раздражение — 3 балла</string>
+    <string name="motor4">Отдёргивание конечности в ответ на болевое раздражение — 4 балла</string>
+    <string name="motor5">Целенаправленное движение в ответ на болевое раздражение (отталкивание) — 5 баллов</string>
+    <string name="motor6">Выполнение движений по команде — 6 баллов</string>
+    <string name="result">Результат</string>
 </resources>
