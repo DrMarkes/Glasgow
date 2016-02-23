@@ -31,6 +31,10 @@ public class MyFragment extends Fragment {
 
     }
 
+    public void setText(String result) {
+        textViewResult.setText(result);
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
