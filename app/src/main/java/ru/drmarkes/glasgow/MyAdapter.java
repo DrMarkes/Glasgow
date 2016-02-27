@@ -3,6 +3,10 @@ package ru.drmarkes.glasgow;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
+import ru.drmarkes.glasgow.fragments.EyeFragment;
+import ru.drmarkes.glasgow.fragments.MotorFragment;
+import ru.drmarkes.glasgow.fragments.ResultFragment;
+import ru.drmarkes.glasgow.fragments.VerbalFragment;
 
 
 /**
@@ -15,21 +19,21 @@ public class MyAdapter extends FragmentPagerAdapter {
 
     @Override
     public Fragment getItem(int position) {
-        int layout = 0;
+        Fragment fragment = null;
         switch (position) {
             case 0:
-                layout = R.layout.fragment_eye;
+                fragment = EyeFragment.newInstance();
                 break;
             case 1:
-                layout = R.layout.fragment_verbal;
+                fragment = VerbalFragment.newInstance();
                 break;
             case 2:
-                layout = R.layout.fragment_motor;
+                fragment = MotorFragment.newInstance();
                 break;
             case 3:
-                layout = R.layout.fragment_result;
+                fragment = ResultFragment.newInstance();
         }
-        return MyFragment.newInstance(layout);
+        return fragment;
     }
 
     @Override

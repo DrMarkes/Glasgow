@@ -21,5 +21,6 @@
     <string name="motor4">Отдёргивание конечности в ответ на болевое раздражение — 4 балла</string>
     <string name="motor5">Целенаправленное движение в ответ на болевое раздражение (отталкивание) — 5 баллов</string>
     <string name="motor6">Выполнение движений по команде — 6 баллов</string>
-    <string name="result">Результат</string>
+    <string name="result">Оценка уровня сознания по шкале Глазго</string>
+    <string name="depression">Оценка по классификации А.И.Коновалова</string>
 </resources>
