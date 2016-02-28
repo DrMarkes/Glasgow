@@ -19,24 +19,15 @@ public class MainActivity extends AppCompatActivity implements OnSetResponseList
         switch (name){
             case "eye":
                 eye = response;
-                viewPager.setCurrentItem(1);
                 break;
             case "verbal":
                 verbal = response;
-                viewPager.setCurrentItem(2);
                 break;
             case "motor":
                 motor = response;
-                if(eye != 0 && verbal != 0) {
-                    viewPager.setCurrentItem(3);
-                    setResultGlasgow();
-                } else if (eye == 0) {
-                    viewPager.setCurrentItem(0);
-                } else {
-                    viewPager.setCurrentItem(1);
-                }
                 break;
         }
+        showNextFragment();
     }
 
     @Override
@@ -56,5 +47,18 @@ public class MainActivity extends AppCompatActivity implements OnSetResponseList
         int result = eye + verbal + motor;
         ResultFragment fragment = (ResultFragment)getSupportFragmentManager().getFragments().get(3);
         fragment.onSetResult(result);
+    }
+
+    private void showNextFragment(){
+        if(eye == 0) {
+            viewPager.setCurrentItem(0);
+        } else if(verbal == 0) {
+            viewPager.setCurrentItem(1);
+        } else if(motor == 0) {
+            viewPager.setCurrentItem(2);
+        } else {
+            viewPager.setCurrentItem(3);
+            setResultGlasgow();
+        }
     }
 }
