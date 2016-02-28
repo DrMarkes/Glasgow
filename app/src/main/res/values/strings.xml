@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Glasgow</string>
+    <string name="app_name">Шкала ком Глазго</string>
     <string name="eye">Открывание глаз</string>
     <string name="verbal">Речевая реакция</string>
     <string name="motor">Двигательная реакция</string>
