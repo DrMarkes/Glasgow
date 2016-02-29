@@ -108,7 +108,7 @@ public class MotorFragment extends Fragment implements View.OnClickListener {
                 break;
         }
         setBackgroundColor();
-        onSetResponseListener.onSetResponse("motor", motor);
+        onSetResponseListener.onSetResponseMotor(motor);
     }
 
     @Override

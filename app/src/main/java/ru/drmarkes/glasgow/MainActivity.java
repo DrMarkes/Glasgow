@@ -11,42 +11,36 @@ public class MainActivity extends AppCompatActivity implements OnSetResponseList
     public int eye = 0;
     private int verbal = 0;
     private int motor = 0;
-
+    private int result = 0;
     ViewPager viewPager;
-
-    @Override
-    public void onSetResponse(String name, int response) {
-        switch (name){
-            case "eye":
-                eye = response;
-                break;
-            case "verbal":
-                verbal = response;
-                break;
-            case "motor":
-                motor = response;
-                break;
-        }
-        showNextFragment();
-    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
         viewPager = (ViewPager)findViewById(R.id.pager);
         viewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
-
         PagerTabStrip pagerTabStrip = (PagerTabStrip)findViewById(R.id.pager_header);
         pagerTabStrip.setDrawFullUnderline(true);
         pagerTabStrip.setTabIndicatorColorResource(R.color.colorPrimary);
     }
 
-    private void setResultGlasgow() {
-        int result = eye + verbal + motor;
-        ResultFragment fragment = (ResultFragment)getSupportFragmentManager().getFragments().get(3);
-        fragment.onSetResult(result);
+    @Override
+    public void onSetResponseEye(int eye) {
+        this.eye = eye;
+        showNextFragment();
+    }
+
+    @Override
+    public void onSetResponseVerbal(int verbal) {
+        this.verbal = verbal;
+        showNextFragment();
+    }
+
+    @Override
+    public void onSetResponseMotor(int motor) {
+        this.motor = motor;
+        showNextFragment();
     }
 
     private void showNextFragment(){
@@ -58,7 +52,17 @@ public class MainActivity extends AppCompatActivity implements OnSetResponseList
             viewPager.setCurrentItem(2);
         } else {
             viewPager.setCurrentItem(3);
-            setResultGlasgow();
+            showResultGlasgow();
         }
+    }
+
+    private void calculateResult() {
+        result = eye + verbal + motor;
+    }
+
+    private void showResultGlasgow() {
+        calculateResult();
+        ResultFragment fragment = (ResultFragment)getSupportFragmentManager().getFragments().get(3);
+        fragment.onSetResult(result);
     }
 }
