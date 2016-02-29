@@ -23,4 +23,6 @@
     <string name="motor6">Выполнение движений по команде — 6 баллов</string>
     <string name="result">Оценка уровня сознания по шкале Глазго</string>
     <string name="depression">Оценка по классификации А.И.Коновалова</string>
+
+    <string name="clear">Очистить результаты</string>
 </resources>

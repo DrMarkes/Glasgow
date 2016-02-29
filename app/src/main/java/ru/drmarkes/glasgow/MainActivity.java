@@ -4,6 +4,7 @@ import android.support.v4.view.PagerTabStrip;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.View;
 
 import ru.drmarkes.glasgow.fragments.ResultFragment;
 
@@ -64,5 +65,13 @@ public class MainActivity extends AppCompatActivity implements OnSetResponseList
         calculateResult();
         ResultFragment fragment = (ResultFragment)getSupportFragmentManager().getFragments().get(3);
         fragment.onSetResult(result);
+    }
+
+    public void onClear(View view) {
+        eye = 0;
+        verbal = 0;
+        motor = 0;
+        getSupportFragmentManager().getFragments().clear();
+        viewPager.setAdapter(new MyAdapter(getSupportFragmentManager()));
     }
 }

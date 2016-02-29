@@ -16,16 +16,16 @@ import ru.drmarkes.glasgow.R;
  * Created by Андрей on 29.02.2016.
  */
 abstract class ResponseFragment extends Fragment implements View.OnClickListener {
-    protected int response;
+    int response;
     OnSetResponseListener onSetResponseListener;
-    Button button1;
-    Button button2;
-    Button button3;
-    Button button4;
+    Button[] button;
     int layoutName;
+    int countButtons;
 
-    public ResponseFragment(int layoutName){
+    public ResponseFragment(int layoutName, int countButtons){
         this.layoutName = layoutName;
+        this.countButtons = countButtons;
+        button = new Button[countButtons];
     }
 
     @Override
@@ -50,48 +50,38 @@ abstract class ResponseFragment extends Fragment implements View.OnClickListener
     }
 
     void findView(View v){
-        for(int i = 1; i <=4; i++) {
-            int buttonID = getResources().getIdentifier("response" + i, "id", getActivity().getPackageName());
+        for(int i = 0; i < countButtons; i++) {
+            int id = i + 1;
+            int buttonResponse = i + 1;
+            int buttonID = getResources().getIdentifier("response" + id, "id", getActivity().getPackageName());
             button[i] = (Button)v.findViewById(buttonID);
+            button[i].setTag(buttonResponse);
         }
-        button1 = (Button)v.findViewById(R.id.response1);
-        button2 = (Button)v.findViewById(R.id.response2);
-        button3 = (Button)v.findViewById(R.id.response3);
-        button4 = (Button)v.findViewById(R.id.response4);
     }
 
     void setButtonListener(){
-        button1.setOnClickListener(this);
-        button2.setOnClickListener(this);
-        button3.setOnClickListener(this);
-        button4.setOnClickListener(this);
+        for(int i = 0; i < countButtons; i++) {
+            button[i].setOnClickListener(this);
+        }
     }
 
     void setBackgroundColorPrimary(){
-        button1.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
-        button2.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
-        button3.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
-        button4.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
+        for(int i = 0; i < countButtons; i++) {
+            button[i].setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
+        }
     }
 
     void setBackgroundColor() {
+        int id = response - 1;
         setBackgroundColorPrimary();
-        switch (response){
-            case 1:
-                button1.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorAccentLight));
-                break;
-            case 2:
-                button2.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorAccentLight));
-                break;
-            case 3:
-                button3.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorAccentLight));
-                break;
-            case 4:
-                button4.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorAccentLight));
-                break;
+        if(response != 0) {
+            button[id].setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorAccentLight));
         }
     }
 
     @Override
-    abstract public void onClick(View v);
+    public void onClick(View v) {
+        response = (int)v.getTag();
+        setBackgroundColor();
+    }
 }

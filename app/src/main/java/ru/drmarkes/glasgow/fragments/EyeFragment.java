@@ -9,9 +9,10 @@ import ru.drmarkes.glasgow.R;
  */
 public class EyeFragment extends ResponseFragment {
     private static final int LAYOUT_NAME = R.layout.fragment_eye;
+    private static final int COUNT_BUTTONS = 4;
 
     public EyeFragment(){
-        super(LAYOUT_NAME);
+        super(LAYOUT_NAME, COUNT_BUTTONS);
     }
 
     public static EyeFragment newInstance(){
@@ -20,21 +21,7 @@ public class EyeFragment extends ResponseFragment {
 
     @Override
     public void onClick(View v) {
-        switch (v.getId()) {
-            case R.id.response1:
-                response = 1;
-                break;
-            case R.id.response2:
-                response = 2;
-                break;
-            case R.id.response3:
-                response = 3;
-                break;
-            case R.id.response4:
-                response = 4;
-                break;
-        }
-        setBackgroundColor();
+        super.onClick(v);
         onSetResponseListener.onSetResponseEye(response);
     }
 }
