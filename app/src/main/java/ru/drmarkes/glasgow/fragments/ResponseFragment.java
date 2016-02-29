@@ -49,28 +49,32 @@ abstract class ResponseFragment extends Fragment implements View.OnClickListener
         return viewFragment;
     }
 
-    private void findView(View v){
+    void findView(View v){
+        for(int i = 1; i <=4; i++) {
+            int buttonID = getResources().getIdentifier("response" + i, "id", getActivity().getPackageName());
+            button[i] = (Button)v.findViewById(buttonID);
+        }
         button1 = (Button)v.findViewById(R.id.response1);
         button2 = (Button)v.findViewById(R.id.response2);
         button3 = (Button)v.findViewById(R.id.response3);
         button4 = (Button)v.findViewById(R.id.response4);
     }
 
-    private void setButtonListener(){
+    void setButtonListener(){
         button1.setOnClickListener(this);
         button2.setOnClickListener(this);
         button3.setOnClickListener(this);
         button4.setOnClickListener(this);
     }
 
-    private void setBackgroundColorPrimary(){
+    void setBackgroundColorPrimary(){
         button1.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
         button2.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
         button3.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
         button4.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
     }
 
-    protected void setBackgroundColor() {
+    void setBackgroundColor() {
         setBackgroundColorPrimary();
         switch (response){
             case 1:

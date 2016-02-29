@@ -1,65 +1,47 @@
 package ru.drmarkes.glasgow.fragments;
 
-import android.content.Context;
-import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.content.ContextCompat;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 
-import ru.drmarkes.glasgow.OnSetResponseListener;
 import ru.drmarkes.glasgow.R;
 
 /**
  * Created by Андрей on 24.02.2016.
  */
-public class VerbalFragment extends Fragment implements View.OnClickListener {
-    Button button1;
-    Button button2;
-    Button button3;
-    Button button4;
+public class VerbalFragment extends ResponseFragment {
     Button button5;
-    private int verbal;
-    private OnSetResponseListener onSetResponseListener;
+    private static final int LAYOUT_NAME = R.layout.fragment_verbal;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        onSetResponseListener = (OnSetResponseListener) context;
+    public VerbalFragment(){
+        super(LAYOUT_NAME);
     }
-
-    public VerbalFragment(){}
 
     public static VerbalFragment newInstance(){
         return new VerbalFragment();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View viewFragment = inflater.inflate(R.layout.fragment_verbal, container, false);
-        button1 = (Button)viewFragment.findViewById(R.id.response1);
-        button1.setOnClickListener(this);
-        button2 = (Button)viewFragment.findViewById(R.id.response2);
-        button2.setOnClickListener(this);
-        button3 = (Button)viewFragment.findViewById(R.id.response3);
-        button3.setOnClickListener(this);
-        button4 = (Button)viewFragment.findViewById(R.id.response4);
-        button4.setOnClickListener(this);
-        button5 = (Button)viewFragment.findViewById(R.id.response5);
-        button5.setOnClickListener(this);
-        setBackgroundColor();
-        return viewFragment;
+    void findView(View v) {
+        super.findView(v);
+        button5 = (Button)v.findViewById(R.id.response5);
     }
 
-    private void setBackgroundColor() {
-        button1.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
-        button2.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
-        button3.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
-        button4.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
+    @Override
+    void setButtonListener() {
+        super.setButtonListener();
+        button5.setOnClickListener(this);
+    }
+
+    @Override
+    void setBackgroundColorPrimary() {
+        super.setBackgroundColorPrimary();
         button5.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
-        switch (verbal){
+    }
+
+    void setBackgroundColor() {
+        setBackgroundColorPrimary();
+        switch (response){
             case 1:
                 button1.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorAccentLight));
                 break;
@@ -82,28 +64,22 @@ public class VerbalFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.response1:
-                verbal = 1;
+                response = 1;
                 break;
             case R.id.response2:
-                verbal = 2;
+                response = 2;
                 break;
             case R.id.response3:
-                verbal = 3;
+                response = 3;
                 break;
             case R.id.response4:
-                verbal = 4;
+                response = 4;
                 break;
             case R.id.response5:
-                verbal = 5;
+                response = 5;
                 break;
         }
         setBackgroundColor();
-        onSetResponseListener.onSetResponseVerbal(verbal);
-    }
-
-    @Override
-    public void onDetach() {
-        onSetResponseListener = null;
-        super.onDetach();
+        onSetResponseListener.onSetResponseVerbal(response);
     }
 }

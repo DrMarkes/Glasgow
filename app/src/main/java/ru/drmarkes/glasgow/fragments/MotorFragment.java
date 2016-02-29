@@ -15,55 +15,43 @@ import ru.drmarkes.glasgow.R;
 /**
  * Created by Андрей on 24.02.2016.
  */
-public class MotorFragment extends Fragment implements View.OnClickListener {
-    Button button1;
-    Button button2;
-    Button button3;
-    Button button4;
+public class MotorFragment extends ResponseFragment {
     Button button5;
     Button button6;
-    private int motor;
-    private OnSetResponseListener onSetResponseListener;
+    private static final int LAYOUT_NAME = R.layout.fragment_motor;
 
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        onSetResponseListener = (OnSetResponseListener) context;
+    public MotorFragment(){
+        super(LAYOUT_NAME);
     }
-
-    public MotorFragment(){}
 
     public static MotorFragment newInstance(){
         return new MotorFragment();
     }
 
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View viewFragment = inflater.inflate(R.layout.fragment_motor, container, false);
-        button1 = (Button)viewFragment.findViewById(R.id.response1);
-        button1.setOnClickListener(this);
-        button2 = (Button)viewFragment.findViewById(R.id.response2);
-        button2.setOnClickListener(this);
-        button3 = (Button)viewFragment.findViewById(R.id.response3);
-        button3.setOnClickListener(this);
-        button4 = (Button)viewFragment.findViewById(R.id.response4);
-        button4.setOnClickListener(this);
-        button5 = (Button)viewFragment.findViewById(R.id.response5);
-        button5.setOnClickListener(this);
-        button6 = (Button)viewFragment.findViewById(R.id.response6);
-        button6.setOnClickListener(this);
-        setBackgroundColor();
-        return viewFragment;
+    void findView(View v) {
+        super.findView(v);
+        button5 = (Button)v.findViewById(R.id.response5);
+        button6 = (Button)v.findViewById(R.id.response6);
     }
 
-    private void setBackgroundColor() {
-        button1.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
-        button2.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
-        button3.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
-        button4.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
+    @Override
+    void setButtonListener() {
+        super.setButtonListener();
+        button5.setOnClickListener(this);
+        button6.setOnClickListener(this);
+    }
+
+    @Override
+    void setBackgroundColorPrimary() {
+        super.setBackgroundColorPrimary();
         button5.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
         button6.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryLight));
-        switch (motor){
+    }
+
+    void setBackgroundColor() {
+        setBackgroundColorPrimary();
+        switch (response){
             case 1:
                 button1.setBackgroundColor(ContextCompat.getColor(getActivity(), R.color.colorAccentLight));
                 break;
@@ -89,31 +77,25 @@ public class MotorFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.response1:
-                motor = 1;
+                response = 1;
                 break;
             case R.id.response2:
-                motor = 2;
+                response = 2;
                 break;
             case R.id.response3:
-                motor = 3;
+                response = 3;
                 break;
             case R.id.response4:
-                motor = 4;
+                response = 4;
                 break;
             case R.id.response5:
-                motor = 5;
+                response = 5;
                 break;
             case R.id.response6:
-                motor = 6;
+                response = 6;
                 break;
         }
         setBackgroundColor();
-        onSetResponseListener.onSetResponseMotor(motor);
-    }
-
-    @Override
-    public void onDetach() {
-        onSetResponseListener = null;
-        super.onDetach();
+        onSetResponseListener.onSetResponseMotor(response);
     }
 }
